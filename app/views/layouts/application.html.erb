@@ -1,6 +1,6 @@
 <% content_for :body do %>
   <%= render 'shared/header'%>
-  <%= render 'shared/slider'%>
+  <%= render 'shared/slider' if action_name == 'home'  %>  
   <%= yield %>
   <%= render 'shared/footer'%>
   
