@@ -15,7 +15,9 @@ RSpec.describe '/' , type: :request do
   describe 'GET /blog' do
     it 'renders a successfull response on blog page' do 
       get '/blog'
+      expect(response).to have_http_status(:ok) 
       expect(response.body).to include('<h3 class="display-4 text-white text-uppercase">Blog</h3>')  
+      expect(response).to be_successful
     end 
   end  
 
