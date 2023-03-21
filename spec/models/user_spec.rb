@@ -16,6 +16,7 @@ RSpec.describe User, type: :model do
 
       it { expect(saved_user).to be_an_instance_of User}
       
+      it { expect(user).to accept_nested_attributes_for(:profile) }
       
       it 'has a default role type' do        
         expect(saved_user.role_type).to eq("customer")        
