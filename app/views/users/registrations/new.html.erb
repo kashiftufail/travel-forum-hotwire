@@ -1,29 +1,48 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="text-center mb-3 pb-3">
+      <h2 class="text-primary text-uppercase" style="letter-spacing: 5px;">Sign up</h2>      
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="contact-form bg-white" style="padding: 30px;">
+          <div id="success"></div>
+          <%= form_for([resource_name, resource.with_profile], url: registration_path(resource_name)) do |f| %>
+            <%= render "users/shared/error_messages", resource: resource %>            
+            <div class="control-group">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" ,
+                  class: "form-control p-4" , placeholder: "Email", required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <%= f.fields_for :profile do |p| %>
+              <div class="control-group">
+                <%= p.text_field :first_name ,
+                    class: "form-control p-4" , placeholder: "First name", required: "required"%>  
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="control-group">                
+                <%= p.text_field :last_name, 
+                    class: "form-control p-4" , placeholder: "Last name", required: "required"%>  
+                <p class="help-block text-danger"></p>
+              </div>
+            <% end %>
+            <div class="control-group">
+              <%= f.password_field :password, autocomplete: "new-password",
+                  class: "form-control p-4" , placeholder: "Password min 6 length", required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" ,
+                  class: "form-control p-4" , placeholder: "Confirm password", required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="text-center">             
+              <%= f.submit "Sign up" ,class: "btn btn-primary py-3 px-4"%>
+            </div>
+          <% end%>
+          <%= render "users/shared/links" %>
+        </div>        
+      </div>
+    </div>    
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

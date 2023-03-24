@@ -1,26 +1,41 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="text-center mb-3 pb-3">
+      <h2 class="text-primary text-uppercase" style="letter-spacing: 5px;">Log in</h2>      
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="contact-form bg-white" style="padding: 30px;">
+          <div id="success"></div>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>            
+            <div class="control-group">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" ,
+                  class: "form-control p-4" , placeholder: "Email", required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            
+            <div class="control-group">
+              <%= f.password_field :password, autocomplete: "current-password",
+                  class: "form-control p-4" , placeholder: "Password", required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+              <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end %>
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="text-center">             
+              <%= f.submit "Log in" ,class: "btn btn-primary py-3 px-4"%>
+            </div>
+          <% end%>
+          <%= render "users/shared/links" %>
+        </div>        
+      </div>
+    </div>    
   </div>
-<% end %>
+</div>
 
-<%= render "users/shared/links" %>
