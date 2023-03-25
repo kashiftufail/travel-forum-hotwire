@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  authenticate :user, -> user { user.admin_role_type? } do
+    mount Avo::Engine => '/avo'
+  end
+  
+  # mount Avo::Engine, at: Avo.configuration.root_path
   resources :destinations
   resources :tours
   devise_for :users
