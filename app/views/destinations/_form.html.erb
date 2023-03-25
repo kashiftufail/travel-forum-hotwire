@@ -1,0 +1,37 @@
+<%= form_with(model: destination) do |form| %>
+  <% if destination.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(destination.errors.count, "error") %> prohibited this destination from being saved:</h2>
+
+      <ul>
+        <% destination.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :detail, style: "display: block" %>
+    <%= form.text_area :detail %>
+  </div>
+
+  <div>
+    <%= form.label :tour_id, style: "display: block" %>
+    <%= form.text_field :tour_id %>
+  </div>
+
+  <div>
+    <%= form.label :stay_days, style: "display: block" %>
+    <%= form.number_field :stay_days %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
