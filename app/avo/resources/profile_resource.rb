@@ -10,8 +10,8 @@ class ProfileResource < Avo::BaseResource
   field :first_name, as: :text
   field :last_name, as: :text
   field :phone, as: :text
-  field :address, as: :text
-  field :user_id, as: :number
+  field :address, as: :text  
+  field :avatar, as: :file
   field :user, as: :belongs_to
   # add fields here
 end

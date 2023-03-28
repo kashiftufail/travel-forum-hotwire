@@ -5,5 +5,9 @@ FactoryBot.define do
     phone {Faker::PhoneNumber.cell_phone_in_e164 }
     address {Faker::Address.full_address}
     user
+    after(:build) do |file|
+      file.avatar.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'about.jpg')), 
+                            filename: 'about.jpg', content_type: 'image/jpeg')
+    end
   end
 end
