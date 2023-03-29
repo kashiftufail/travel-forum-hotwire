@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   
   describe 'associations' do    
     it { is_expected.to have_one(:profile) }
+    it { is_expected.to have_many(:tours) }
   end
   
   describe 'validations' do    
