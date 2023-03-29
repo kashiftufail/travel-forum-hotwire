@@ -1,0 +1,67 @@
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="text-center mb-3 pb-3">
+      <h2 class="text-primary text-uppercase" style="letter-spacing: 5px;">Log in</h2>      
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="contact-form bg-white" style="padding: 30px;">
+          <div id="success"></div>
+          <%= form_with(model: @profile) do |p| %>
+            <% if @profile.errors.any? %>
+             <div style="color: red">
+               <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+               <ul>
+                <% @profile.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+               </ul>
+             </div>
+            <% end %>
+            <div class="control-group">
+              <%= p.text_field :first_name ,
+                               class: "form-control p-4" , placeholder: "First name", 
+                               required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">                
+              <%= p.text_field :last_name, 
+                               class: "form-control p-4" , placeholder: "Last name", 
+                               required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+              <%= p.text_field :address ,
+                               class: "form-control p-4" , placeholder: "Address", 
+                               required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">                
+              <%= p.text_field :phone, 
+                               class: "form-control p-4" , placeholder: "Phone", 
+                               required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            
+            <div class="control-group">
+              <%= p.file_field :avatar, class: "form-control" %>  
+              <p class="help-block text-danger"></p>
+              <div></div>
+            </div>
+
+
+            <%= image_tag @profile.avatar.variant(:thumb) if @profile.avatar.attached? %>
+            
+
+            <div class="text-center">             
+              <%= p.submit "Update profile" ,class: "btn btn-primary py-3 px-4"%>
+            </div>
+          <% end%>          
+        </div>        
+      </div>
+    </div>    
+  </div>
+</div>
+
+
+

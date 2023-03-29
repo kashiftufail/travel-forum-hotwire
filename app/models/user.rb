@@ -14,10 +14,10 @@ class User < ApplicationRecord
   def with_profile   
     build_profile if profile.nil?
 	  self
-  end
+  end  
 
-  def tiny_name
-    self.profile.last_name
+  def full_name
+    "#{self.profile.first_name} #{self.profile.last_name}"
   end
 
 

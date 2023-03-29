@@ -11,29 +11,34 @@
             <%= render "users/shared/error_messages", resource: resource %>            
             <div class="control-group">
               <%= f.email_field :email, autofocus: true, autocomplete: "email" ,
-                  class: "form-control p-4" , placeholder: "Email", required: "required"%>  
+                                class: "form-control p-4" , placeholder: "Email", 
+                                required: "required"%>  
               <p class="help-block text-danger"></p>
             </div>
             <%= f.fields_for :profile do |p| %>
               <div class="control-group">
                 <%= p.text_field :first_name ,
-                    class: "form-control p-4" , placeholder: "First name", required: "required"%>  
+                                 class: "form-control p-4" , placeholder: "First name", 
+                                 required: "required"%>  
                 <p class="help-block text-danger"></p>
               </div>
               <div class="control-group">                
                 <%= p.text_field :last_name, 
-                    class: "form-control p-4" , placeholder: "Last name", required: "required"%>  
+                                 class: "form-control p-4" , placeholder: "Last name", 
+                                 required: "required"%>  
                 <p class="help-block text-danger"></p>
               </div>
             <% end %>
             <div class="control-group">
               <%= f.password_field :password, autocomplete: "new-password",
-                  class: "form-control p-4" , placeholder: "Password min 6 length", required: "required"%>  
+                                   class: "form-control p-4" , placeholder: "Password min 6 length", 
+                                   required: "required"%>  
               <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
               <%= f.password_field :password_confirmation, autocomplete: "new-password" ,
-                  class: "form-control p-4" , placeholder: "Confirm password", required: "required"%>  
+                                   class: "form-control p-4" , placeholder: "Confirm password", 
+                                   required: "required"%>  
               <p class="help-block text-danger"></p>
             </div>
             <div class="text-center">             

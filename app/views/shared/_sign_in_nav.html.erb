@@ -1,7 +1,9 @@
 <div class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Welcome </a>
-  <div class="dropdown-menu border-0 rounded-0 m-0">
-    <%= link_to "Profile" , about_path, class: "dropdown-item" %>
-    <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } , class: "dropdown-item"%>                           
+  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= image_tag Current.user.profile.avatar.variant(resize_to_fit: [20, 20]) %> </a>
+  <div class="dropdown-menu border-0 rounded-0 m-0">    
+    <%= link_to "Profile" , edit_profile_path(Current.user.profile), class: "dropdown-item" %>
+    <%= link_to "Admin" , '/avo', class: "dropdown-item" if admin?%>
+    <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } , 
+        class: "dropdown-item"%>                           
   </div>
 </div>
