@@ -28,6 +28,11 @@ RSpec.describe Profile, type: :model do
         expect(res).to be_truthy          
       end
 
-    end  
+    end 
+    context 'attachment' do
+      it 'has attached file' do
+        expect(saved_profile).to have_one_attached(:avatar)  
+      end 
+    end   
   end
 end
