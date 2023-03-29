@@ -5,7 +5,7 @@ class ProfileResource < Avo::BaseResource
   #   scope.ransack(id_eq: params[:q], m: "or").result(distinct: false)
   # end
 
-  field :id, as: :id
+  field :id, as: :id ,link_to_resource: true
   # Fields generated from the model
   field :first_name, as: :text
   field :last_name, as: :text

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  
+  resources :profiles
+  
   authenticate :user, -> user { user.admin_role_type? } do
     mount Avo::Engine => '/avo'
   end
