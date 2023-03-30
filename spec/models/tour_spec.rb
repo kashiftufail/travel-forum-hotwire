@@ -8,32 +8,47 @@ RSpec.describe Tour, type: :model do
     it { is_expected.to belong_to(:user) }
   end
   
-  describe "validation" do  
+  describe "validations" do  
     it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_presence_of(:slug) }
     it { is_expected.to validate_presence_of(:detail) }
     it { is_expected.to validate_presence_of(:price) }
     it { is_expected.to validate_presence_of(:avatars) }
   end
   
-  describe 'creating profile' do
+  describe 'creating tour' do
     let(:tour) {build(:tour)}
     let(:saved_tour) {create(:tour)}
       
     context 'success' do      
-      it 'creates successfully with user' do
-        expect(saved_profile).to be_truthy          
+      it 'creates successfully with user' do        
+        expect(saved_tour).to be_truthy          
       end
       it 'updates successfully with valid params' do        
-        res = saved_profile.update(first_name: 'Hamza' , last_name: 'joe')                     
+        
+        res = saved_tour.update(title: 'another way to go with ruby' , price: 123)                     
         expect(res).to be_truthy          
       end
 
     end 
     context 'attachment' do
-      it 'has attached file' do
-        expect(saved_profile).to have_one_attached(:avatar)  
+      it 'has attached many files' do
+        expect(saved_tour).to have_many_attached(:avatars)  
+      end
+      it 'has attached files more than 1' do
+        expect(saved_tour.avatars.size).to be > 1
       end 
-    end   
+    end
+    context 'slug creation callback' do
+      it 'successfully creates slug before save' do
+        expect(tour.slug).to be_nil 
+        expect(saved_tour.slug).not_to be_nil 
+      end
+      it 'successfully updates slug before save' do
+        old_slug = saved_tour.slug        
+        saved_tour.title = 'New slug for testing'
+        saved_tour.save        
+        expect(saved_tour.slug).not_to eq(old_slug) 
+      end  
+    end     
   end
 end
