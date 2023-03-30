@@ -18,5 +18,7 @@ class TourResource < Avo::BaseResource
   field :price, as: :number  
   field :avatars, as: :files
   field :user, as: :belongs_to
+  field :destinations, as: :has_many
+
   # add fields here
 end

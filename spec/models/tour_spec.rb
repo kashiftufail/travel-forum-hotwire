@@ -6,6 +6,7 @@ RSpec.describe Tour, type: :model do
   
   describe 'associations' do    
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:destinations) }
   end
   
   describe "validations" do  
@@ -21,14 +22,12 @@ RSpec.describe Tour, type: :model do
       
     context 'success' do      
       it 'creates successfully with user' do        
-        expect(saved_tour).to be_truthy          
+        expect(tour.save).to be_truthy          
       end
-      it 'updates successfully with valid params' do        
-        
+      it 'updates successfully with valid params' do                
         res = saved_tour.update(title: 'another way to go with ruby' , price: 123)                     
         expect(res).to be_truthy          
       end
-
     end 
     context 'attachment' do
       it 'has attached many files' do
