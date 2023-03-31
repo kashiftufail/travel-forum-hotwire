@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :products , only: [:index,:show ]
   
-  resources :profiles
+  resources :profiles ,only: [:edit, :update]
   
   authenticate :user, -> user { user.admin_role_type? } do
     mount Avo::Engine => '/avo'
   end
   
   # mount Avo::Engine, at: Avo.configuration.root_path
-  resources :destinations
-  resources :tours
+  resources :destinations, only: [:index,:show ]
+  resources :tours, only: [:index,:show ]
   devise_for :users
 
   get '/about', to: 'pages#about'
