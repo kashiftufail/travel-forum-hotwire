@@ -18,7 +18,8 @@ class ProductResource < Avo::BaseResource
   field :price, as: :number
   field :quantity_in_hand, as: :number
   field :detail, as: :textarea
-  field :size, as: :text
+  field :size, include_blank: 'Select type',
+      as: :select, enum: ::Product.sizes  
   field :avatar, as: :file
   # add fields here
 end
