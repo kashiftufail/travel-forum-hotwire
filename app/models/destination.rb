@@ -8,7 +8,7 @@ class Destination < ApplicationRecord
     attachable.variant :large, resize_to_limit: [1080, 1420]    
   end
 
-  validates :stay_days ,presence: true
+  validates :avatars,:stay_days ,presence: true
   before_save :update_slug 
   
 end

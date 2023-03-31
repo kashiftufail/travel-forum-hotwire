@@ -2,9 +2,8 @@ module Attachment
   extend ActiveSupport::Concern 
 
   included do
-    validates :title,:detail,:avatars , presence: true    
-  end 
-  
+    validates :title,:detail, presence: true    
+  end   
 
   def to_param
     slug || id

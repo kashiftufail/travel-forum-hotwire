@@ -9,7 +9,7 @@ class Tour < ApplicationRecord
     attachable.variant :large, resize_to_limit: [1080, 1920]    
   end
 
-  validates :price ,presence: true
+  validates :price ,:avatars ,presence: true
   before_save :update_slug  
 
 

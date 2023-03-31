@@ -2,6 +2,7 @@
 Avo.configure do |config|
   ## == Routing ==
   config.root_path = '/avo'
+  config.resource_controls_placement = :left
 
   # Where should the user be redirected when visting the `/avo` url
   # config.home_path = nil
