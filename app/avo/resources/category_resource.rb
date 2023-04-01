@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CategoryResource < Avo::BaseResource
-  self.title = :name 
+  self.title = :name
   self.includes = []
   # self.search_query = -> do
   #   scope.ransack(id_eq: params[:q], m: "or").result(distinct: false)

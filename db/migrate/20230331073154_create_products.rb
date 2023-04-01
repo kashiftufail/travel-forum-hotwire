@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateProducts < ActiveRecord::Migration[7.0]
   def change
     create_table :products do |t|
@@ -9,9 +11,9 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.text :detail
       t.string :size
       t.string :slug
-      
+
       t.timestamps
     end
-    add_index :products , :slug , unique: true
+    add_index :products, :slug, unique: true
   end
 end

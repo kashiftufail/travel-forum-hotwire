@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :tour do
     title { Faker::Lorem.sentence }
@@ -5,9 +7,9 @@ FactoryBot.define do
     price { 1.5 }
     after(:build) do |file|
       3.times do
-        file.avatars.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'about.jpg')), 
+        file.avatars.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'about.jpg')),
                             filename: 'about.jpg', content_type: 'image/jpeg')
-      end                      
+      end
     end
     user
   end

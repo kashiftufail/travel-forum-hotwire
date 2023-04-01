@@ -5,10 +5,9 @@ class Destination < ApplicationRecord
   belongs_to :tour
 
   has_many_attached :avatars do |attachable|
-    attachable.variant :large, resize_to_limit: [1080, 1420]    
+    attachable.variant :large, resize_to_limit: [1920, 1080]
   end
 
-  validates :avatars,:stay_days ,presence: true
-  before_save :update_slug 
-  
+  validates :avatars, :stay_days, presence: true
+  before_save :update_slug
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # For more information regarding these settings check out our docs https://docs.avohq.io
 Avo.configure do |config|
   ## == Routing ==
@@ -24,7 +26,6 @@ Avo.configure do |config|
   Avo.configure do |config|
     config.current_user_method = :current_user
   end
-  
 
   ## == Authorization ==
   # config.authorization_methods = {
