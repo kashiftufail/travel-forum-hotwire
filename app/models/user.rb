@@ -13,12 +13,17 @@ class User < ApplicationRecord
   enum :role_type, { customer: 0, admin: 1 }, suffix: true
   enum :member_type, { gold: 0, diamond: 1, platinum: 2 }, suffix: true
 
-  def with_profile
+  scope :admins, -> { where(role_type: 1) } # for avo
+
+  
+  def with_profile    
     build_profile if profile.nil?
+
     self
   end
 
   def full_name
     "#{profile.first_name} #{profile.last_name}"
   end
+  
 end

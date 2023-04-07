@@ -19,7 +19,7 @@ class TourResource < Avo::BaseResource
   field :detail, as: :textarea
   field :price, as: :number
   field :avatars, as: :files
-  field :user, as: :belongs_to
+  field :user, as: :belongs_to  , attach_scope: -> { query.admins }  
   field :destinations, as: :has_many
 
   # add fields here
