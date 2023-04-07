@@ -8,4 +8,10 @@ module ApplicationHelper
       link_to 'Login', new_user_session_path, class: 'nav-item nav-link'
     end
   end
+
+  def avatar
+    Current.user.profile.avatar.attached? ? 
+      Current.user.profile.avatar :
+      '/assets/default.png' 
+  end  
 end
