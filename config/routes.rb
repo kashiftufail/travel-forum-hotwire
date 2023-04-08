@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources 'services' , only: %i[index new create]
+  
   resources :packages
   resources :products, only: %i[index show]
 
@@ -12,9 +14,12 @@ Rails.application.routes.draw do
 
   # mount Avo::Engine, at: Avo.configuration.root_path
   resources :destinations, only: %i[index show]
-  resources :tours, only: %i[index show]
+  resources :tours
+  # , only: %i[index show]
   devise_for :users
 
+  get :search, controller: :destinations
+  
   get '/about', to: 'pages#about'
   get '/contact', to: 'pages#contact'
 

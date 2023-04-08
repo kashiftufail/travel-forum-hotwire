@@ -14,4 +14,9 @@ module ApplicationHelper
       Current.user.profile.avatar :
       '/assets/default.png' 
   end  
+
+  def assign_current_user(object)
+    Current.user ? object.user = Current.user : object
+    # object
+  end  
 end

@@ -1,0 +1,63 @@
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="text-center mb-3 pb-3">
+      <h2 class="text-primary text-uppercase" style="letter-spacing: 5px;">Travel</h2>      
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="contact-form bg-white" style="padding: 30px;">
+          <div id="success"></div>
+          <%= form_with(model: @service_request, url: services_path) do |p| %>
+            <% if @service_request.errors.any? %>
+             <div style="color: red">
+               <h2><%= pluralize(@service_request.errors.count, "error") %> prohibited this profile from being saved:</h2>
+               <ul>
+                <% @service_request.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+               </ul>
+             </div>
+            <% end %>
+            <div class="control-group">
+              <%=p.hidden_field :service_type ,value: @query %>
+              <%= p.text_field :name ,
+                               class: "form-control p-4" , placeholder: "Name", 
+                               required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">                
+              <%= p.text_field :email, 
+                               class: "form-control p-4" , placeholder: "Email", 
+                               required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">                
+              <%= p.text_field :phone, 
+                               class: "form-control p-4" , placeholder: "Phone", 
+                               required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+              <%= p.text_field :no_of_night_stays ,
+                               class: "form-control p-4" , placeholder: "no of night stay", 
+                               required: "required"%>  
+              <p class="help-block text-danger"></p>
+            </div>           
+            <div class="control-group">
+              <%= p.text_area :detail, class: "form-control p4" , placeholder: "detail you want", 
+                               required: "required"%>  
+              <p class="help-block text-danger"></p>
+              <div></div>
+            </div>
+            <div class="text-center">             
+              <%= p.submit "Make Request" ,class: "btn btn-primary py-3 px-4"%>
+            </div>
+          <% end%>          
+        </div>        
+      </div>
+    </div>    
+  </div>
+</div>
+
+
+
