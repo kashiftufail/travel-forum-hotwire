@@ -15,7 +15,8 @@ class ProductResource < Avo::BaseResource
   field :id, as: :id
   # Fields generated from the model
   field :title, as: :text, link_to_resource: true
-  field :number, as: :text
+  field :number, as: :text,name: 'ISSBN number'
+  field :quantity_scale, as: :text,placeholder: 'quantity like 200 grams or 1 kg or 250 ML'
   field :category, as: :belongs_to
   field :price, as: :number
   field :quantity_in_hand, as: :number
