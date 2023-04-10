@@ -16,8 +16,7 @@ class PackageResource < Avo::BaseResource
 
   field :id, as: :id
   # Fields generated from the model
-  field :title, as: :text, link_to_resource: true
-  field :tour, as: :belongs_to
+  field :title, as: :text, link_to_resource: true  
   field :price, as: :number
   field :no_of_persons, as: :number
   field :detail, as: :textarea
