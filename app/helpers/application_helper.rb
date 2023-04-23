@@ -9,6 +9,21 @@ module ApplicationHelper
     end
   end
 
+  def home_active    
+    controller_name == "home" ? "nav-item nav-link active" : 
+                                "nav-item nav-link" 
+  end
+  
+  def services_active    
+    controller_name == "services" ? "nav-item nav-link active" : 
+                                    "nav-item nav-link" 
+  end
+
+  def packages_active    
+    controller_name == "packages" ? "nav-item nav-link active" : 
+                                    "nav-item nav-link" 
+  end
+
   def avatar
     Current.user.profile.avatar.attached? ? 
       Current.user.profile.avatar :
