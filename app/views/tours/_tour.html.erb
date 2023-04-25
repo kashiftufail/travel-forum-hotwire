@@ -1,22 +1,11 @@
-<div id="<%= dom_id tour %>">
-  <p>
-    <strong>Title:</strong>
-    <%= tour.title %>
-  </p>
+<div class="col-lg-4 col-md-6 mb-4" id="<%= dom_id tour %>">
+  <div class="destination-item position-relative overflow-hidden mb-2"> 
+    <%= image_tag tour.avatars[0].variant(:large) , class: "img-fluid", alt: "" if tour.avatars.attached? %>
+      <%=link_to tour_path(tour),class: "destination-overlay text-white text-decoration-none" do%>
+        <h5 class="text-white"><%=tour.title%></h5> <span><%=tour.destinations.size%> Destinations</span>
+      <% end %>
+  </div>
+</div> 
 
-  <p>
-    <strong>Detail:</strong>
-    <%= tour.detail %>
-  </p>
 
-  <p>
-    <strong>Price:</strong>
-    <%= tour.price %>
-  </p>
 
-  <p>
-    <strong>User:</strong>
-    <%= tour.user_id %>
-  </p>
-
-</div>

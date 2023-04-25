@@ -9,12 +9,14 @@ class ToursController < ApplicationController
   end
 
   # GET /tours/1 or /tours/1.json
-  def show; end
+  def show
+    @destinations = @tour.destinations    
+  end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_tour
-    @tour = Tour.find(params[:id])
+    @tour = Tour.find_by(slug: params[:id])
   end
 end

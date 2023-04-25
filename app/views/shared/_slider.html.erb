@@ -1,11 +1,12 @@
 <div class="container-fluid p-0">
     <div id="header-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-
-        <%['carousel-1.jpg','carousel-2.jpg'].map.with_index do |item,index| %>
-                
+        <%= avatars ||=  ['carousel-1.jpg','carousel-2.jpg'] %>
+        
+        <% avatars.map.with_index do |item,index| %>
+              
           <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-            <%= image_tag "#{item}" ,class: 'w-100',alt: "Image" %>
+            <%= image_tag item ,class: 'w-100',alt: "Image" %>
               <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                 <div class="p-3" style="max-width: 900px;">
                   <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>

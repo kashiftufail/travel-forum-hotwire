@@ -19,8 +19,8 @@ module ApplicationHelper
                                     "nav-item nav-link" 
   end
 
-  def packages_active    
-    controller_name == "packages" ? "nav-item nav-link active" : 
+  def tours_active    
+    controller_name == "tours" ? "nav-item nav-link active" : 
                                     "nav-item nav-link" 
   end
 
@@ -31,7 +31,10 @@ module ApplicationHelper
   end  
 
   def assign_current_user(object)
-    Current.user ? object.user = Current.user : object
-    # object
+    Current.user ? object.user = Current.user : object    
+  end  
+
+  def destination_avatar(destination)
+    destination.avatars[0]
   end  
 end

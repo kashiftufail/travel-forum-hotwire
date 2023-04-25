@@ -1,10 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<div class="container-fluid page-header" style="background-image: url(<%= rails_blob_url(@tour.avatars[0]) %>)">
+  <div class="container">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+      <h3 class="display-4 text-white text-uppercase">Destinations</h3>
+      <div class="d-inline-flex text-white">
+        <p class="m-0 text-uppercase"><a class="text-white" href="/">Home</a></p>
+        <i class="fa fa-angle-double-right pt-1 px-3"></i>
+        <p class="m-0 text-uppercase">Destinations</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= render @tour %>
-
-<div>
-  <%= link_to "Edit this tour", edit_tour_path(@tour) %> |
-  <%= link_to "Back to tours", tours_path %>
-
-  <%= button_to "Destroy this tour", @tour, method: :delete %>
+<div class="container-fluid py-5">
+  <div class="container pt-5 pb-3">
+    <div class="text-center mb-3 pb-3">
+      <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tour Details</h6>
+      <h1>Pefect Tour Destinations</h1>
+    </div>
+    
+    <div class="row">            
+      <% @destinations.map do |des| %>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="package-item bg-white mb-2">                        
+            <%=link_to(image_tag(destination_avatar(des), alt:"#{destination_avatar(des).filename}", width:'350', height:'233' ), destination_path(des))%>
+            <div class="p-4">
+              <div class="d-flex justify-content-between mb-3">
+                <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Pakistan</small>
+                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i><%=des.stay_days%> days</small>
+                <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>1 - 50</small>
+              </div>
+              <%= link_to  des.title, destination_path(des) ,class:"h5 text-decoration-none" %>
+              </div>
+            </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
 </div>
