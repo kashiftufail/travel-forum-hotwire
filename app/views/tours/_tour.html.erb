@@ -1,6 +1,6 @@
 <div class="col-lg-4 col-md-6 mb-4" id="<%= dom_id tour %>">
   <div class="destination-item position-relative overflow-hidden mb-2"> 
-    <%= image_tag tour.avatars[0].variant(:large) , class: "img-fluid", alt: "" if tour.avatars.attached? %>
+    <%= image_tag tour.avatars[0].variant(:medium) , width: '350', height: '233', class: "img-fluid11", alt: "" if tour.avatars.attached? %>
       <%=link_to tour_path(tour),class: "destination-overlay text-white text-decoration-none" do%>
         <h5 class="text-white"><%=tour.title%></h5> <span><%=tour.destinations.size%> Destinations</span>
       <% end %>

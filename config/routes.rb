@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   resources 'services' , only: %i[index new create]
   
-  resources :packages
+  resources :tour_packages
   resources :products, only: %i[index show]
 
   resources :profiles, only: %i[edit update]

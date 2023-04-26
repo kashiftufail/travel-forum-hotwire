@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
-class PackagesController < ApplicationController
+class TourPackagesController < ApplicationController
   before_action :set_package, only: %i[show edit update destroy]
 
   # GET /packages or /packages.json
-  def index
-    @packages = Package.all
+  def index    
+    
+    # binding.pry
+    
+    @tour_packages = Package.joins(:destinations).distinct
+
   end
 
   # GET /packages/1 or /packages/1.json
@@ -69,3 +73,7 @@ class PackagesController < ApplicationController
     params.require(:package).permit(:title, :tour_id, :price, :detail)
   end
 end
+
+
+
+# SELECT DISTINCT "packages".* FROM "packages" INNER JOIN "destinations_packages" ON "destinations_packages"."package_id" = "packages"."id" INNER JOIN "destinations" ON "destinations"."id" = "destinations_packages"."destination_id"

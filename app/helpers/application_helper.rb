@@ -20,7 +20,8 @@ module ApplicationHelper
   end
 
   def tours_active    
-    controller_name == "tours" ? "nav-item nav-link active" : 
+    controller_name == "tours" || controller_name == "destinations" || 
+    controller_name == "tour_packages" ? "nav-item nav-link active" : 
                                     "nav-item nav-link" 
   end
 
