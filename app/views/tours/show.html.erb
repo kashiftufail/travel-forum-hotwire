@@ -1,4 +1,4 @@
-<div class="container-fluid page-header" style="background-image: url(<%= rails_blob_url(@tour.avatars[0].variant(:large)) %>)">
+<div class="container-fluid page-header" style="background-image: url(<%= rails_blob_url(@tour.avatars[0], :width => 1080, :height => 500) %>)">
   <div class="container">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
       <h3 class="display-4 text-white text-uppercase"><%= @tour.title%></h3>
@@ -22,7 +22,7 @@
       <% @destinations.map do |des| %>
         <div class="col-lg-4 col-md-6 mb-4">
           <div class="package-item bg-white mb-2">                        
-            <%= link_to(image_tag(destination_avatar(des).variant(:medium), alt:"#{destination_avatar(des).filename}", width:'350', height:'233' ), destination_path(des))%>
+            <%= link_to(cl_image_tag(destination_avatar(des).key, width: 350, height: 233, crop: :scale, alt:"#{destination_avatar(des).filename}" ), destination_path(des))%>            
             <div class="p-4">
               <div class="d-flex justify-content-between mb-3">
                 <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Pakistan</small>

@@ -44,14 +44,15 @@
             </div>
             
             <div class="control-group">
-              <%= p.file_field :avatar, class: "form-control" %>  
+              <%= p.file_field :avatar, class: "form-control" , direct_upload: true %>  
               <p class="help-block text-danger"></p>
               <div></div>
             </div>
 
 
-            <%= image_tag avatar , height: '100' , width: '100' %>
-            
+            <%#= image_tag avatar , height: '100' , width: '100' %>
+            <%= cl_image_tag(avatar.key, width: 100, height: 100, crop: :scale) %>
+
 
             <div class="text-center">             
               <%= p.submit "Update profile" ,class: "btn btn-primary py-3 px-4"%>

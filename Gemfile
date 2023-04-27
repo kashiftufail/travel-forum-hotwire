@@ -97,3 +97,5 @@ group :development, :test do
 
   # Specifics
 end
+
+gem "cloudinary", "~> 1.25"

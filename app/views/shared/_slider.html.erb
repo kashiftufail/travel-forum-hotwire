@@ -1,13 +1,13 @@
 <div class="container-fluid p-0">
     <div id="header-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <%= avatars ||=  ['carousel-1.jpg','carousel-2.jpg'] %>        
+        <%= avatars ||=  ['awesome-1.jpg','awesome-2.jpg'] %>        
         <% avatars.map.with_index do |item,index| %>              
           <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-            <%if ['carousel-1.jpg','carousel-2.jpg'].include? item%>
+            <%if ['awesome-1.jpg','awesome-2.jpg'].include? item%>
               <%= image_tag item ,class: 'w-100',alt: "Image", height: '500' %>
             <% else %>  
-              <%= image_tag item.variant(:large) ,class: 'w-100',alt: "Image", height: '500' %>
+              <%= cl_image_tag item.key ,class: 'w-100',alt: "Image", height: 500, width: 1000 ,crop: :scale%>
             <% end %>   
               <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                 <div class="p-3" style="max-width: 900px;">

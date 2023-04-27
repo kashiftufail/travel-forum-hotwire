@@ -5,11 +5,7 @@ class Tour < ApplicationRecord
   has_many :destinations, dependent: :destroy
   has_many :packages, dependent: :destroy
   belongs_to :user
-
-  has_many_attached :avatars do |attachable|
-    attachable.variant :large, resize_to_limit: [1920, 1080] 
-    attachable.variant :medium , resize_to_limit: [350, 233]  
-  end
+  has_many_attached :avatars 
 
   validates :price, :avatars, presence: true
   before_save :update_slug
