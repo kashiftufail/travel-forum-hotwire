@@ -1,6 +1,10 @@
 <div class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-    <%= image_tag avatar ,height: '20' ,width: '20'%> 
+    <% if avatar.class.name == "String"%>
+      <%= cl_image_tag(avatar, width: 20, height: 20, crop: :scale) %>
+    <% else %>
+      <%= cl_image_tag(avatar.key, width: 20, height: 20, crop: :scale) %>
+    <% end %> 
   </a> 
   <div class="dropdown-menu border-0 rounded-0 m-0">    
     <%= link_to "Profile" , edit_profile_path(Current.user.profile), 

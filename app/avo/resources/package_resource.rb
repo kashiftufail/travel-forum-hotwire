@@ -20,5 +20,6 @@ class PackageResource < Avo::BaseResource
   field :price, as: :number
   field :no_of_persons, as: :number
   field :detail, as: :textarea
+  field :destinations, as: :has_many
   # add fields here
 end
