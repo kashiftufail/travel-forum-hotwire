@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_10_203949) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_30_110324) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_203949) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "no_of_persons"
+    t.string "email"
+    t.string "stay_nights"
+    t.string "phone"
+    t.text "detail"
+    t.datetime "departure_date"
+    t.datetime "return_date"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "bookings_destinations", force: :cascade do |t|
+    t.bigint "booking_id", null: false
+    t.bigint "destination_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_bookings_destinations_on_booking_id"
+    t.index ["destination_id"], name: "index_bookings_destinations_on_destination_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -78,15 +101,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_203949) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
   end
 
-  create_table "package_destinations", force: :cascade do |t|
-    t.bigint "destination_id", null: false
-    t.bigint "package_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["destination_id"], name: "index_package_destinations_on_destination_id"
-    t.index ["package_id"], name: "index_package_destinations_on_package_id"
-  end
-
   create_table "packages", force: :cascade do |t|
     t.string "title"
     t.float "price"
@@ -95,8 +109,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_203949) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.integer "no_of_persons"
-    t.bigint "destination_id"
-    t.index ["destination_id"], name: "index_packages_on_destination_id"
     t.index ["slug"], name: "index_packages_on_slug", unique: true
   end
 
@@ -179,12 +191,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_203949) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings_destinations", "bookings"
+  add_foreign_key "bookings_destinations", "destinations"
   add_foreign_key "destinations", "tours"
   add_foreign_key "destinations_packages", "destinations"
   add_foreign_key "destinations_packages", "packages"
-  add_foreign_key "package_destinations", "destinations"
-  add_foreign_key "package_destinations", "packages"
-  add_foreign_key "packages", "destinations"
   add_foreign_key "products", "categories"
   add_foreign_key "profiles", "users"
   add_foreign_key "service_requests", "users"

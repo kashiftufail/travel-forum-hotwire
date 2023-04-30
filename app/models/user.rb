@@ -7,6 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :profile, dependent: :destroy
+  has_many :service_requests
+  has_many :booking
   accepts_nested_attributes_for :profile
   validates :profile, presence: true
 
