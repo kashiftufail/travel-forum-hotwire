@@ -1,0 +1,5 @@
+<% if avatar.class.name == "String"%>
+  <%= cl_image_tag(avatar, width: dimension, height: dimension, crop: :scale) %>
+<% else %>
+  <%= cl_image_tag(avatar.key, width: dimension, height: dimension, crop: :scale) %>
+<% end %> 
