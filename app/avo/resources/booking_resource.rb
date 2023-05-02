@@ -14,5 +14,6 @@ class BookingResource < Avo::BaseResource
   field :departure_date, as: :date_time
   field :return_date, as: :date_time
   field :destinations, as: :has_many
+  field :user, as: :belongs_to
   # add fields here
 end

@@ -7,8 +7,12 @@ import './src/jquery-easy-autocomplete-min'
 import "./src/bootstrap-min";
 import flatpickr from "flatpickr";
 import './src/flatpickr';
+import './src/choices.min';
 import "./src/owl-carousel";
 import './src/main'
+
+
+
 
 
 

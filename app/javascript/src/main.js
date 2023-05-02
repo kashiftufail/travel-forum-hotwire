@@ -43,6 +43,7 @@ $(document).on("turbo:load", () => {
     removeItemButton: true,
     maxItemCount:5,
     searchResultLimit:5,
+    placeholder: true,
     renderChoiceLimit:5
   }); 
 
