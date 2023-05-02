@@ -47,5 +47,4 @@ $(document).on("turbo:load", () => {
     renderChoiceLimit:5
   }); 
 
-
 });
