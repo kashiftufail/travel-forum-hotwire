@@ -1,43 +1,58 @@
-<div class="container-fluid booking mt-5 pb-5">
-  <div class="container pb-5">
-    <div class="bg-light shadow" style="padding: 30px;">
-      <div class="row align-items-center" style="min-height: 60px;">
-        <div class="col-md-10">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="mb-3 mb-md-0"> <select class="custom-select px-4" style="height: 47px;">
-                  <option selected>Destination</option>
-                  <option value="1">Destination 1</option>
-                  <option value="2">Destination 1</option>
-                  <option value="3">Destination 1</option>
-                </select> </div>
-            </div>
-            <div class="col-md-3">
-              <div class="mb-3 mb-md-0">
-                <div class="date" id="date1" data-target-input="nearest"> <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Depart Date" data-target="#date1" data-toggle="datetimepicker" /> </div>
+  <%= form_with(model: @booking) do |form| %>
+  <div class="container-fluid booking mt-5 pb-5">
+    <div class="container pb-5">
+      <div class="bg-light shadow" style="padding: 30px;">
+        <div class="row align-items-center" style="min-height: 60px;">
+          <div class="col-md-10">
+            <div class="row">            
+              <div class="col-md-3">
+                <div class="mb-3 mb-md-0">
+                  <div class="date" id="date11" data-target-input="nearest"> 
+
+                    <%= select(:booking, :destinations, Destination.all.collect { |p| [ p.title, p.id ] }, 
+                               {prompt: 'Select one or more destinatioins'} , id: 'choices-multiple-remove-button' , multiple: true) %>                                     <%= form_with url: search_path,  method: :get, html: { class: "form-inline my-2 my-lg-0" } do |form| %>
+                    
+                    <% end %>  
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-md-3">
-              <div class="mb-3 mb-md-0">
-                <div class="date" id="date2" data-target-input="nearest"> <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Return Date" data-target="#date2" data-toggle="datetimepicker" /> </div>
+
+              <div class="col-md-3">
+                <div class="mb-3 mb-md-0">
+                  <div class="date" id="date" data-target-input="nearest"> 
+                    <%= form.text_field :departure_date ,
+                                        class: "form-control p-4", id: 'booking_departure_date' , 
+                                        placeholder: "Depart Date", required: "required"%> 
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-md-3">
-              <div class="mb-3 mb-md-0"> <select class="custom-select px-4" style="height: 47px;">
-                  <option selected>Duration</option>
-                  <option value="1">Duration 1</option>
-                  <option value="2">Duration 1</option>
-                  <option value="3">Duration 1</option>
-                </select> </div>
+              
+              <div class="col-md-3">
+                <div class="mb-3 mb-md-0">
+                  <div class="date" id="date2" data-target-input="nearest"> 
+                    <%= form.text_field :return_date ,
+                                        class: "form-control p-4", id: 'booking_return_date' ,
+                                        placeholder: "Depart Date", required: "required"%> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="mb-3 mb-md-0"> 
+                <%= form.text_area :detail ,
+                                class: "form-control py-3 px-4" , placeholder: "Detail", 
+                                required: "required", rows: 2%>                
+                 </div>
+              </div>
+  
             </div>
           </div>
+          
         </div>
         <div class="col-md-2"> <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Submit</button> </div>
       </div>
     </div>
   </div>
-</div>
-
+<%end%>  
 
 <%= render 'shared/sign_up' unless user_signed_in? %>
 
@@ -76,48 +91,21 @@
     </div>
   </div>
 </div> <!-- Feature End -->
+
 <!-- Destination Start -->
 <div class="container-fluid py-5">
   <div class="container pt-5 pb-3">
     <div class="text-center mb-3 pb-3">
-      <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Destination</h6>
-      <h1>Explore Top Destination</h1>
-    </div>
-    <div class="row">
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="destination-item position-relative overflow-hidden mb-2"> <img class="img-fluid" src="/assets/destination-1.jpg" alt=""> <a class="destination-overlay text-white text-decoration-none" href="">
-            <h5 class="text-white">United States</h5> <span>100 Cities</span>
-          </a> </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="destination-item position-relative overflow-hidden mb-2"> <img class="img-fluid" src="/assets/destination-2.jpg" alt=""> <a class="destination-overlay text-white text-decoration-none" href="">
-            <h5 class="text-white">United Kingdom</h5> <span>100 Cities</span>
-          </a> </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="destination-item position-relative overflow-hidden mb-2"> <img class="img-fluid" src="/assets/destination-3.jpg" alt=""> <a class="destination-overlay text-white text-decoration-none" href="">
-            <h5 class="text-white">Australia</h5> <span>100 Cities</span>
-          </a> </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="destination-item position-relative overflow-hidden mb-2"> <img class="img-fluid" src="/assets/destination-4.jpg" alt=""> <a class="destination-overlay text-white text-decoration-none" href="">
-            <h5 class="text-white">India</h5> <span>100 Cities</span>
-          </a> </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="destination-item position-relative overflow-hidden mb-2"> <img class="img-fluid" src="/assets/destination-5.jpg" alt=""> <a class="destination-overlay text-white text-decoration-none" href="">
-            <h5 class="text-white">South Africa</h5> <span>100 Cities</span>
-          </a> </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="destination-item position-relative overflow-hidden mb-2"> <img class="img-fluid" src="/assets/destination-6.jpg" alt=""> <a class="destination-overlay text-white text-decoration-none" href="">
-            <h5 class="text-white">Indonesia</h5> <span>100 Cities</span>
-          </a> </div>
-      </div>
+      <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tours</h6>
+      <h1>Explore Top Tours</h1>
+    </div> 
+    <div class="row">      
+      <%= render partial: 'tours/tour', collection: @tours, as: :tour %>  
     </div>
   </div>
 </div> <!-- Destination Start -->
 <!-- Testimonial Start -->
+
 <div class="container-fluid py-5">
   <div class="container py-5">
     <div class="text-center mb-3 pb-3">
@@ -198,4 +186,4 @@
       </div>
     </div>
   </div>
-</div> <!-- Blog End -->
+</div> 
