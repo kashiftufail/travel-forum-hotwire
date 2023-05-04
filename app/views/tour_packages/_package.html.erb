@@ -1,0 +1,18 @@
+<div class="col-lg-4 col-md-6 mb-4" id="<%= dom_id tour %>">
+  <div class="destination-item position-relative overflow-hidden mb-2"> 
+    <%= cl_image_tag(destination_avatar(tour.destinations.first).key, class:"img-fluid", height: 233, width: 350 ,crop: :scale)%>
+      <%=link_to "",class: "destination-overlay text-white text-decoration-none" do%>
+        <h5 class="text-white" style="text-align: center;"><%=tour.title%></h5> <span><%=tour.destinations.size if tour.destinations%> Destinations</span>
+      <% end %>
+  </div>
+</div> 
+
+
+
+
+
+
+
+
+
+
