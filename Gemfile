@@ -98,4 +98,9 @@ group :development, :test do
   # Specifics
 end
 
+gem "letter_opener", group: :development
 gem "cloudinary", "~> 1.25"
+
+gem "sidekiq", "~> 7.1"
+
+gem "sidekiq-scheduler", "~> 5.0"
