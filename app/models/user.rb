@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   scope :admins, -> { where(role_type: 1) } # for avo
 
+  after_create :send_welcome_email
   
   def with_profile    
     build_profile if profile.nil?
@@ -27,5 +28,9 @@ class User < ApplicationRecord
   def full_name
     "#{profile.first_name} #{profile.last_name}"
   end
+
+  def send_welcome_email
+    WelcomeEmailJob.perform_in(2.minutes, self.id)
+  end  
   
 end

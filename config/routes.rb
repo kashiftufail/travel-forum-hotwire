@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'sidekiq/web'
 
 Rails.application.routes.draw do
   
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
 
   authenticate :user, ->(user) { user.admin_role_type? } do
     mount Avo::Engine => '/avo'
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   # mount Avo::Engine, at: Avo.configuration.root_path
