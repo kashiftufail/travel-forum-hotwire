@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_30_110324) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_15_180756) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -168,6 +168,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_110324) do
     t.datetime "updated_at", null: false
     t.string "slug", null: false
     t.boolean "is_active", default: true
+    t.integer "destinations_count"
     t.index ["slug"], name: "index_tours_on_slug", unique: true
     t.index ["user_id"], name: "index_tours_on_user_id"
   end

@@ -10,7 +10,7 @@ class ToursController < ApplicationController
 
   # GET /tours/1 or /tours/1.json
   def show
-    @destinations = @tour.destinations    
+    @destinations = @tour.destinations.includes([:avatars_attachments])         
   end
 
   private

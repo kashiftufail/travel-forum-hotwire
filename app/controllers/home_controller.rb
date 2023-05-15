@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  def index
-    # binding.pry
+  def index    
     @booking = Booking.new
     @user = User.new unless current_user
-    @tours = Tour.all
+    @tours = Tour.includes([:avatars_attachments])    
   end
 end

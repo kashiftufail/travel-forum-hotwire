@@ -2,7 +2,7 @@
 
 class Destination < ApplicationRecord
   include Attachment
-  belongs_to :tour
+  belongs_to :tour, counter_cache: true, touch: true 
   has_many :destinations_packages
   has_many :packages, through: :destinations_packages
   has_many :bookings_destinations

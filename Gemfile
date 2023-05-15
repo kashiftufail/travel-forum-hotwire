@@ -99,6 +99,8 @@ group :development, :test do
 end
 
 gem "letter_opener", group: :development
+gem 'bullet', group: 'development'
+
 gem "cloudinary", "~> 1.25"
 
 gem "sidekiq", "~> 7.1"
