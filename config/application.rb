@@ -16,6 +16,9 @@ module TravelHotwire
     config.time_zone = 'Karachi'
     config.active_record.default_timezone = :local
 
+    config.cache_store = :mem_cache_store # Will fallback to $MEMCACHE_SERVERS, then 127.0.0.1:11211
+    
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

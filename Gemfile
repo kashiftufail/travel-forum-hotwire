@@ -106,3 +106,5 @@ gem "cloudinary", "~> 1.25"
 gem "sidekiq", "~> 7.1"
 
 gem "sidekiq-scheduler", "~> 5.0"
+
+gem "dalli", "~> 3.2"
