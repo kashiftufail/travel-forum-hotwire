@@ -12,8 +12,8 @@
           <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;"><%= link_to @destination.tour.title, tour_path(@destination.tour) %></h6>
           <h1 class="mb-3"><%= @destination.title%></h1>
           <p><%= @destination.detail%></p>
-          <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Stay Nights: <%= @destination.stay_days%></h6>
-          <a href="/" class="btn btn-primary mt-1">Book Now</a>
+          <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Stay Nights: <%= @destination.stay_days%></h6>          
+          <%= link_to "Book Now", new_booking_path,class: "btn btn-primary mt-1"%>
         </div>
       </div>
     </div>

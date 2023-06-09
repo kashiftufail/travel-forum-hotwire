@@ -65,7 +65,8 @@ class TourPackagesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_package
-    @package = Package.find(params[:id])
+    @tour_package = Package.find_by(slug: params[:id])
+    @destinations = @tour_package.destinations
   end
 
   # Only allow a list of trusted parameters through.
