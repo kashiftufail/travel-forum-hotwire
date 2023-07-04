@@ -1,37 +1,27 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>Name:</strong>
-    <%= product.name %>
-  </p>
-
-  <p>
-    <strong>Number:</strong>
-    <%= product.number %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= product.category_id %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
-
-  <p>
-    <strong>Quantity in hand:</strong>
-    <%= product.quantity_in_hand %>
-  </p>
-
-  <p>
-    <strong>Detail:</strong>
-    <%= product.detail %>
-  </p>
-
-  <p>
-    <strong>Size:</strong>
-    <%= product.size %>
-  </p>
-
-</div>
+<div class="col-lg-4 col-md-6" id="<%= dom_id product %>">
+  <div class="single-product"> 
+    <div class="product-img">
+      <%= cl_image_tag(product.avatars[0].key, height: 261, class: "card-img", alt: "", crop: :scale) %>
+      <div class="p_icon">
+        <a href="#">
+        <i class="fa fa-eye"></i>
+        </a>
+        <a href="#">
+        <i class="fa fa-heart"></i>
+        </a>
+        <a href="#">
+        <i class="fa fa-shopping-cart"></i>
+        </a>
+      </div>
+    </div>
+    <div class="product-btm">
+      <a href="#" class="d-block">
+        <h4><%= product.title%></h4>
+      </a>
+      <div class="mt-3">
+        <span class="mr-4">$<%= product.price%></span>
+        <del>$35.00</del>
+      </div>
+    </div>
+  </div>
+</div>  

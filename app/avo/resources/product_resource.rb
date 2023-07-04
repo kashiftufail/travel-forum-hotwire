@@ -23,6 +23,6 @@ class ProductResource < Avo::BaseResource
   field :detail, as: :textarea
   field :size, include_blank: 'Select type',
                as: :select, enum: ::Product.sizes
-  field :avatar, as: :file
+  field :avatars, as: :files
   # add fields here
 end
