@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_15_180756) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_05_175721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_180756) do
     t.index ["destination_id"], name: "index_bookings_destinations_on_destination_id"
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -99,6 +104,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_180756) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "product_id", null: false
+    t.bigint "cart_id", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+    t.index ["product_id"], name: "index_line_items_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.float "sub_total"
+    t.float "total"
+    t.string "shipping_address"
+    t.integer "payment_mod"
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "packages", force: :cascade do |t|
@@ -198,6 +227,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_180756) do
   add_foreign_key "destinations", "tours"
   add_foreign_key "destinations_packages", "destinations"
   add_foreign_key "destinations_packages", "packages"
+  add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "profiles", "users"
   add_foreign_key "service_requests", "users"
