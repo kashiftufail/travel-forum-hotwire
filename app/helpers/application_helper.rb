@@ -13,6 +13,11 @@ module ApplicationHelper
     controller_name == "home" ? "nav-item nav-link active" : 
                                 "nav-item nav-link" 
   end
+
+  def shop_active    
+    controller_name == "products" ? "nav-item nav-link active" : 
+                                    "nav-item nav-link" 
+  end
   
   def services_active    
     controller_name == "services" ? "nav-item nav-link active" : 
