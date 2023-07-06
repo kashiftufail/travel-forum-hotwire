@@ -12,7 +12,7 @@
       </div>
       
       <div class="col-lg-6 text-center text-lg-right">
-        <div class="d-inline-flex align-items-center">
+        <div class="d-inline-flex align-items-center" >
           <%= link_to "#", class: "text-primary px-3" do %>
             <i class="fab fa-facebook-f"></i> 
           <% end %>
@@ -27,7 +27,10 @@
           <% end %>
           <%= link_to "#", class: "text-primary px-3" do %>
             <i class="fab fa-youtube"></i> 
-          <% end %>                  
+          <% end %>   
+          <%= link_to "#", class: "text-primary px-3" do %>
+            <i class="fa fa-shopping-cart"></i> <%= line_items %>
+          <% end %>                                 
         </div>
       </div>
     </div>

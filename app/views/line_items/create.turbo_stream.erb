@@ -1,0 +1,6 @@
+<%= turbo_stream.update("icons",
+            partial: "shared/header") %>
+
+<%= turbo_stream.update("flash",
+            partial: "shared/flash_messages",
+            locals: { notice: "Product Added." }) %>            

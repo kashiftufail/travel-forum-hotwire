@@ -1,6 +1,10 @@
 <% content_for :body do %>
-  <%= render 'shared/header'%>
-  <%= render 'shared/flash_messages'%> 
+  <div id="icons">
+    <%= render 'shared/header'%>
+  </div>  
+  <div id="flash">
+    <%= render 'shared/flash_messages'%> 
+  </div>
   <%= render 'shared/slider' if action_name == 'index' && 
                              controller_name == 'home'  %>  
   <%= yield %>
