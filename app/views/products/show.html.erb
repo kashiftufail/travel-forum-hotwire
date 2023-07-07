@@ -29,7 +29,7 @@
             data-ride="carousel"
             >
             <ol class="carousel-indicators">
-              <%@product.avatars.each_with_index do |avtr,index|%>
+              <% @product.avatars.each_with_index do |avtr,index| %>
                 <li
                   data-target="#carouselExampleIndicators"
                   data-slide-to="<%=index%>"
@@ -38,15 +38,15 @@
                   <%= cl_image_tag(avtr.key, height: 60, Width: 60, alt: "", crop: :scale) %>
                   
                 </li>
-              <%end%>              
+              <% end %>              
             </ol>
             <div class="carousel-inner">
-              <%@product.avatars.each_with_index do |avtr,index|%>
+              <% @product.avatars.each_with_index do |avtr,index| %>
               <div class="carousel-item <%= index == 0 ? "active" : ""%>">
                     <%= cl_image_tag(avtr.key, height: 600, Width: 555, class: "d-block w-100", alt: "", crop: :scale) %>
                 
               </div>
-              <%end%>        
+              <% end %>        
             </div>
           </div>
         </div>
@@ -68,41 +68,42 @@
           <p>
             <%=@product.detail%>
           </p>
+          
+          <%= form_with(model: @line_item) do |p| %>
           <div class="product_count">
+          
             <label for="qty">Quantity:</label>
-            <input
-              type="text"
-              name="qty"
-              id="sst"
-              maxlength="12"
-              value="1"
-              title="Quantity:"
-              class="input-text qty"
-              />
+            <%= p.hidden_field :product_id, value: @product.id %>         
+            <%= p.text_field :quantity, id: "sst", 
+                class:"input-text qty", value: "1" %>         
             <button
               onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
               class="increase items-count"
               type="button"
               >
-            <i class="lnr lnr-chevron-up"></i>
+            <i class="fas fa-angle-up"></i>
             </button>
             <button
               onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
               class="reduced items-count"
               type="button"
               >
-            <i class="lnr lnr-chevron-down"></i>
-            </button>
+            <i class="fas fa-angle-down"></i>
+            </button>         
+          
           </div>
+          
           <div class="card_area">
-            <a class="main_btn" href="#">Add to Cart</a>
+            <%= p.submit "Add to Cart",class: "main_btn"%>            
             <a class="icon_btn" href="#">
-            <i class="lnr lnr lnr-diamond"></i>
+            <i class="fa fa-diamond"></i>
             </a>
             <a class="icon_btn" href="#">
-            <i class="lnr lnr lnr-heart"></i>
+            <i class="fa fa-heart"></i>
             </a>
           </div>
+          <% end %>  
+
         </div>
       </div>
     </div>

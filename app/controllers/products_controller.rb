@@ -9,7 +9,9 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1 or /products/1.json
-  def show; end
+  def show
+    @line_item = LineItem.new
+  end
 
   private
 
