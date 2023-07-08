@@ -70,38 +70,38 @@
           </p>
           
           <%= form_with(model: @line_item) do |p| %>
-          <div class="product_count">
           
-            <label for="qty">Quantity:</label>
-            <%= p.hidden_field :product_id, value: @product.id %>         
-            <%= p.text_field :quantity, id: "sst", 
-                class:"input-text qty", value: "1" %>         
-            <button
-              onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-              class="increase items-count"
-              type="button"
-              >
-            <i class="fas fa-angle-up"></i>
-            </button>
-            <button
-              onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-              class="reduced items-count"
-              type="button"
-              >
-            <i class="fas fa-angle-down"></i>
-            </button>         
+            <div class="product_count" data-controller="add-product">
+            
+              <label for="qty">Quantity:</label>
+              <%= p.hidden_field :product_id, value: @product.id %>         
+              <%= p.text_field :quantity, id: "sst", 
+                  class:"input-text qty", value: "1", data: { add_product_target: :quantity }  %>         
+              <button data-action='click->add-product#addQuantity'               
+                class="increase items-count"
+                type="button"
+                >
+              <i class="fas fa-angle-up"></i>
+              </button>
+              <button data-action='click->add-product#decreaseQuantity'               
+                class="reduced items-count"
+                type="button"
+                >
+              <i class="fas fa-angle-down"></i>
+              </button>         
+            
+            </div>
+            
+            <div class="card_area">
+              <%= p.submit "Add to Cart",class: "main_btn"%>            
+              <a class="icon_btn" href="#">
+              <i class="fa fa-diamond"></i>
+              </a>
+              <a class="icon_btn" href="#">
+              <i class="fa fa-heart"></i>
+              </a>
+            </div>
           
-          </div>
-          
-          <div class="card_area">
-            <%= p.submit "Add to Cart",class: "main_btn"%>            
-            <a class="icon_btn" href="#">
-            <i class="fa fa-diamond"></i>
-            </a>
-            <a class="icon_btn" href="#">
-            <i class="fa fa-heart"></i>
-            </a>
-          </div>
           <% end %>  
 
         </div>
