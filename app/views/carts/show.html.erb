@@ -52,7 +52,7 @@
                   <h5>Subtotal</h5>
                 </td>
                 <td>
-                  <h5>$<%= @sub_total %></h5>
+                  <h5 id="total">$<%= @sub_total %></h5>
                 </td>
               </tr>
               <tr class="shipping_area">
@@ -63,15 +63,15 @@
                 </td>
                 <td>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" value="free" name="flexRadioDefault" id="free" checked>
                     <label class="form-check-label" for="flexRadioDefault1">
-                      Default radio
+                      Free Shipping 
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <input class="form-check-input" type="radio" value="fast" name="flexRadioDefault" id="fast" >
                     <label class="form-check-label" for="flexRadioDefault2">
-                      Default checked radio
+                      Fast Shipping $5
                     </label>
                   </div>
                 </td>               
@@ -83,7 +83,7 @@
                   <h5>Total</h5>
                 </td>
                 <td>
-                  <h5>$12</h5>
+                  <h5>$<%= @sub_total%></h5>
                 </td>
               </tr>
 

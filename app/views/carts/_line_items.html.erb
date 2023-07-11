@@ -1,0 +1,41 @@
+<tr>
+  <td>
+    <div class="media">
+      <div class="d-flex">
+        <%= cl_image_tag(item.product.avatars[0].key, height: 100, Width: 150, alt: "", crop: :scale) %>                      
+      </div>
+      <div class="media-body">
+        <p><%= item.product.title%></p>
+      </div>
+    </div>
+  </td>
+  <td>
+    <h5><%= item.product.id%>$<%= item.product.price%></h5>
+  </td> 
+  <td>     
+    <div class="product_count" id=<%=item.id%> data-controller="add-product">                      
+      <%= text_field_tag "line_item[quantity][]", "#{item.quantity}", id: "input-#{item.id}", class:"input-text qty" %>
+      <%= hidden_field_tag "line_item[product_id][]", "#{item.product.id}" %>      
+      <div id="btn-inc-<%=item.id%>" data-action='click->add-product#addQuantityBulk'>
+      <button 
+        class="increase items-count"
+        type="button"
+        >
+      <i class="fas fa-angle-up"></i>
+      </button>
+      </div>
+      <button id="btn-dec-<%=item.id%>" data-action='click->add-product#decreaseQuantityBulk'               
+        class="reduced items-count"
+        type="button"
+        >
+      <i class="fas fa-angle-down"></i>
+      </button>         
+    </div>
+  
+  </td>
+  
+  <td>
+    <h5>$<%= item.total_price %></h5>
+  </td>
+ 
+</tr>

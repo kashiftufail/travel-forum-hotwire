@@ -30,7 +30,15 @@ Rails.application.routes.draw do
 
   get '/blog', to: 'home#blog'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  
+  post 'line_items' => "line_items#create"
+  post 'update_cart' => "carts#update_cart"
+  get 'line_items/:id' => "line_items#show", as: "line_item"
+  delete 'line_items/:id' => "line_items#destroy"
 
-  # Defines the root path route ("/")
+  
+  get 'cart' => "carts#show", as: "cart"
+  delete 'carts/:id' => "carts#destroy"
+  
   root 'home#index'
 end

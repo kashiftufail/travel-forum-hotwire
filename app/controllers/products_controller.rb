@@ -9,8 +9,8 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1 or /products/1.json
-  def show
-    @line_item = LineItem.new
+  def show    
+    @cart = Cart.new
   end
 
   private
