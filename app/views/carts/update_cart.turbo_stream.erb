@@ -1,0 +1,12 @@
+<%= turbo_stream.update("icons",
+            partial: "shared/header") %>
+
+
+<%= turbo_stream.update("items",
+            partial: "carts/show",
+            locals: { line_items: @line_items }) %>            
+
+
+<%= turbo_stream.update("flash",
+            partial: "shared/flash_messages",
+            locals: { notice: "Cart updated." }) %>            

@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
-
-  def create      
+  
+  def create        
     if params[:line_item].present?
       chosen_product = Product.find(params[:line_item][:product_id])
       quantity = params[:line_item][:quantity].to_i
