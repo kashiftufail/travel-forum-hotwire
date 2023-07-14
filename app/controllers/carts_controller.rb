@@ -7,7 +7,8 @@ class CartsController < ApplicationController
 
   def update_cart        
     params[:line_item][:id].each_with_index do |item, index| 
-      LineItem.find_by(id: params[:line_item][:id][index]).update(quantity: params[:line_item][:quantity][index])
+      item = LineItem.find_by(id: params[:line_item][:id][index])
+      item.update(quantity: params[:line_item][:quantity][index]) if item.present?
     end    
     @cart = @current_cart
     @sub_total = @cart.sub_total
