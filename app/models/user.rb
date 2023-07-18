@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :service_requests
   has_many :booking
+  has_many :tours
+  has_many :destinations , through: :tours
   accepts_nested_attributes_for :profile
   validates :profile, presence: true
 
@@ -18,6 +20,8 @@ class User < ApplicationRecord
   scope :admins, -> { where(role_type: 1) } # for avo
 
   after_create :send_welcome_email
+
+  delegate :first_name, :last_name, :phone, :address , to: :profile , allow_nil: true #for reports
   
   def with_profile    
     build_profile if profile.nil?
