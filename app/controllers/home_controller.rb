@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   def index    
     @booking = Booking.new
     @user = User.new unless current_user
-    @tours = Tour.includes([:avatars_attachments])    
+    @tours = Tour.includes([avatars_attachments: :blob])    
   end
 end
