@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   def show       
-    @cart = @current_cart
+    @cart = Cart.includes(:line_items, :products).find(@current_cart.id)
     @sub_total = @cart.sub_total
     @line_items = @cart.line_items 
   end
@@ -10,7 +10,7 @@ class CartsController < ApplicationController
       item = LineItem.find_by(id: params[:line_item][:id][index])
       item.update(quantity: params[:line_item][:quantity][index]) if item.present?
     end    
-    @cart = @current_cart
+    @cart = Cart.includes(:line_items, :products).find(@current_cart.id)
     @sub_total = @cart.sub_total
     @line_items = @cart.line_items 
     respond_to do |format|   
