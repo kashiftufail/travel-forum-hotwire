@@ -37,6 +37,18 @@ class LineItemsController < ApplicationController
       end
     end  
   end
+
+  def destroy    
+    line_item = LineItem.find(params[:id])    
+    @current_cart.line_items.delete(line_item) if @current_cart.line_items.include? line_item
+    @cart = Cart.includes(:line_items, :products).find(@current_cart.id)    
+    @sub_total = @cart.sub_total
+    @line_items = @cart.line_items 
+    
+    respond_to do |format|  
+      format.turbo_stream
+    end      
+  end  
   
   private
   def line_item_params
