@@ -38,7 +38,8 @@ Rails.application.routes.draw do
 
   
   get 'cart' => "carts#show", as: "cart"
-  delete 'carts/:id' => "carts#destroy"
+  get 'empty_cart' => "carts#empty_cart", as: "empty_cart"
+  # delete 'carts/:id' => "carts#destroy"
   
   root 'home#index'
 end

@@ -8,13 +8,16 @@ class CartsController < ApplicationController
       item = LineItem.find_by(id: params[:line_item][:id][index])
       item.update(quantity: params[:line_item][:quantity][index]) if item.present?
     end    
-    # @cart = Cart.includes(:line_items, :products).find(@current_cart.id)
-    # @sub_total = @cart.sub_total
-    # @line_items = @cart.line_items 
+  
     cart_with_line_items
     respond_to do |format|   
       format.turbo_stream
     end  
+  end  
+
+  def empty_cart    
+    @current_cart.line_items.delete_all    
+    redirect_to cart_path, alert: 'Cart is empty.'   
   end  
 
   def destroy
