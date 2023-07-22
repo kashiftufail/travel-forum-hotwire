@@ -35,9 +35,12 @@ export default class extends Controller {
     var id = this.element.id;
     var inputField = document.getElementById('input-' + id);
     var quan = parseInt(inputField.value);
-    if (!isNaN(quan)) {
+    if (!isNaN(quan) && quan > 0) {
       quan -= 1
       inputField.value = quan;
+    }
+    if(quan === 0){        
+        this.remove(id)
     }
   }
 
@@ -54,18 +57,18 @@ export default class extends Controller {
     }
   }
 
-  remove(event){
-    
-    var id = event.target.id 
-    // this.id = JSON.parse(this.element.dataset.id);
+  remove(event){        
+    var id;
+    if (typeof(event) === 'string'){
+      id = event
+    }
+    else{
+      id = event.target.id    
+    }    
     
     var token = document.querySelector(
       'meta[name="csrf-token"]'
-    ).content;
-    // var id = event.target.id
-
-    console.log(id)
-    console.log(token)
+    ).content;    
     
     fetch(`/line_items/${id}`, {
       method: 'DELETE',
@@ -75,17 +78,11 @@ export default class extends Controller {
       },
       credentials: 'same-origin',
       body: JSON.stringify({
-       id: id
-      //  type: event.target.value,
-      //  studio_id: this.studioTarget.value
+       id: id      
       })
     }).then (response => response.text())
     .then(html => Turbo.renderStreamMessage(html));
-  }
 
-    
-
-  // }
-    
+  }    
   
 }
