@@ -1,8 +1,6 @@
 class CartsController < ApplicationController
   def show       
-    @cart = Cart.includes(:line_items, :products).find(@current_cart.id)
-    @sub_total = @cart.sub_total
-    @line_items = @cart.line_items 
+    cart_with_line_items    
   end
 
   def update_cart        
@@ -10,9 +8,10 @@ class CartsController < ApplicationController
       item = LineItem.find_by(id: params[:line_item][:id][index])
       item.update(quantity: params[:line_item][:quantity][index]) if item.present?
     end    
-    @cart = Cart.includes(:line_items, :products).find(@current_cart.id)
-    @sub_total = @cart.sub_total
-    @line_items = @cart.line_items 
+    # @cart = Cart.includes(:line_items, :products).find(@current_cart.id)
+    # @sub_total = @cart.sub_total
+    # @line_items = @cart.line_items 
+    cart_with_line_items
     respond_to do |format|   
       format.turbo_stream
     end  
@@ -24,4 +23,6 @@ class CartsController < ApplicationController
     session[:cart_id] = nil
     redirect_to root_path
   end
+
+  
 end

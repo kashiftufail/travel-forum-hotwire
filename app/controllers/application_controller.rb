@@ -15,12 +15,17 @@ class ApplicationController < ActionController::Base
       user.permit(:email, :password, :password_confirmation,
                   profile_attributes: %i[first_name last_name])
     end
-  end
+  end  
+
+  def cart_with_line_items
+    @cart = Cart.includes(:line_items, :products).find(@current_cart.id)
+    @sub_total = @cart.sub_total
+    @line_items = @cart.line_items      
+  end  
 
   private
   
   def current_cart
-  
     if session[:cart_id]
       cart = Cart.find_by(id: session[:cart_id])
       if cart.present?
@@ -34,7 +39,6 @@ class ApplicationController < ActionController::Base
       @current_cart = Cart.create
       session[:cart_id] = @current_cart.id
     end    
-    
   end
 
   def set_current_user
