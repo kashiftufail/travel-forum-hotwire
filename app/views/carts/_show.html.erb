@@ -10,7 +10,7 @@
                 <th scope="col">Product</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
+                <th scope="col">Total</th>                
               </tr>
             </thead>
             <tbody>
@@ -57,6 +57,9 @@
                   <h5>$<%= item.total_price %></h5>
                 </td>
               
+                <td data-controller="add-product">
+                  <h5><%= link_to "Remove", "javascript:;", id: "#{item.id}" , data: {action: 'click->add-product#remove'}  %> </h5>
+                </td>
               </tr>
             <% end %>
 
@@ -90,20 +93,21 @@
                     <h5>Shipping</h5>
                   </td>
                   <td>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" value="free" name="flexRadioDefault" id="free" checked>
+                    <div class="form-check" data-controller="add-product">                      
+                      <input class="form-check-input" type="radio" value="free" name="flexRadioDefault" id="free" checked data-action="add-product#toggel">                      
                       <label class="form-check-label" for="flexRadioDefault1">
                         Free Shipping 
                       </label>
                     </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" value="fast" name="flexRadioDefault" id="fast" >
+                    <div class="form-check" data-controller="add-product">                      
+                      <input class="form-check-input" type="radio" value="fast" name="flexRadioDefault" id="fast" data-action="add-product#toggel">                      
                       <label class="form-check-label" for="flexRadioDefault2">
                         Fast Shipping $5
                       </label>
                     </div>
                   </td>               
                 </tr>
+                
                 <tr>
                   <td></td>
                   <td></td>
@@ -111,7 +115,7 @@
                     <h5>Total</h5>
                   </td>
                   <td>
-                    <h5>$<%= @sub_total%></h5>
+                    <h5>$<span id="total_with_shipping"><%= @sub_total%></span></h5>
                   </td>
                 </tr>
               
