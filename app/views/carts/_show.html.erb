@@ -1,138 +1,149 @@
 <section class="cart_area" >
-<%= form_with(model: LineItem.new, url: update_cart_path, method: :post) do |form| %>                       
-    <div class="container">
-      <div class="cart_inner">
-        <div class="table-responsive">
-          <table class="table">
-          
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>                
-              </tr>
-            </thead>
-            <tbody>
+  <% if line_items.present?%>
+    <%= form_with(model: LineItem.new, url: update_cart_path, method: :post) do |form| %>                       
+        <div class="container">
+          <div class="cart_inner">
+            <div class="table-responsive">
+              <table class="table">
+              
+                <thead>
+                  <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>                
+                  </tr>
+                </thead>
+                <tbody>
 
-                               
-            <% line_items.each do |item|%>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <%= cl_image_tag(item.product.avatars[0].key, height: 100, Width: 150, alt: "", crop: :scale) %>                      
-                    </div>
-                    <div class="media-body">
-                      <p><%= item.product.title%></p>
-                    </div>
+                                  
+                <% line_items.each do |item|%>
+                  <tr>
+                    <td>
+                      <div class="media">
+                        <div class="d-flex">
+                          <%= cl_image_tag(item.product.avatars[0].key, height: 100, Width: 150, alt: "", crop: :scale) %>                      
+                        </div>
+                        <div class="media-body">
+                          <p><%= item.product.title%></p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <h5><%= item.product.id%>$<%= item.product.price%></h5>
+                    </td> 
+                    <td>     
+                      <div class="product_count" id=<%=item.id%> data-controller="add-product">                      
+                        <%= text_field_tag "line_item[quantity][]", "#{item.quantity}", id: "input-#{item.id}", class:"input-text qty" %>
+                        <%= hidden_field_tag "line_item[id][]", "#{item.id}" %>      
+                        <div id="btn-inc-<%=item.id%>" data-action='click->add-product#addQuantityBulk'>
+                        <button 
+                          class="increase items-count"
+                          type="button"
+                          >
+                        <i class="fas fa-angle-up"></i>
+                        </button>
+                        </div>
+                        <button id="btn-dec-<%=item.id%>" data-action='click->add-product#decreaseQuantityBulk'               
+                          class="reduced items-count"
+                          type="button"
+                          >
+                        <i class="fas fa-angle-down"></i>
+                        </button>         
+                      </div>
+                    
+                    </td>
+                    
+                    <td>
+                      <h5>$<%= item.total_price %></h5>
+                    </td>
+                  
+                    <td data-controller="add-product">
+                      <h5><%= link_to "Remove", "javascript:;", id: "#{item.id}" , data: {action: 'click->add-product#remove'}  %> </h5>
+                    </td>
+                  </tr>
+                <% end %>                    
+                  
+                    <tr class="bottom_button">
+                      <td>                  
+                        <%= form.submit "Update Cart"%>
+                      </td>
+                      <td></td>
+                      <td></td>                
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <h5>Subtotal</h5>
+                      </td>
+                      <td>
+                        <h5 id="total">$<%= @sub_total %></h5>
+                      </td>
+                    </tr>
+
                   </div>
-                </td>
-                <td>
-                  <h5><%= item.product.id%>$<%= item.product.price%></h5>
-                </td> 
-                <td>     
-                  <div class="product_count" id=<%=item.id%> data-controller="add-product">                      
-                    <%= text_field_tag "line_item[quantity][]", "#{item.quantity}", id: "input-#{item.id}", class:"input-text qty" %>
-                    <%= hidden_field_tag "line_item[id][]", "#{item.id}" %>      
-                    <div id="btn-inc-<%=item.id%>" data-action='click->add-product#addQuantityBulk'>
-                    <button 
-                      class="increase items-count"
-                      type="button"
-                      >
-                    <i class="fas fa-angle-up"></i>
-                    </button>
-                    </div>
-                    <button id="btn-dec-<%=item.id%>" data-action='click->add-product#decreaseQuantityBulk'               
-                      class="reduced items-count"
-                      type="button"
-                      >
-                    <i class="fas fa-angle-down"></i>
-                    </button>         
-                  </div>
-                
-                </td>
-                
-                <td>
-                  <h5>$<%= item.total_price %></h5>
-                </td>
-              
-                <td data-controller="add-product">
-                  <h5><%= link_to "Remove", "javascript:;", id: "#{item.id}" , data: {action: 'click->add-product#remove'}  %> </h5>
-                </td>
-              </tr>
-            <% end %>
+                  
+                    <tr class="shipping_area">
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <h5>Shipping</h5>
+                      </td>
+                      <td>
+                        <div class="form-check" data-controller="add-product">                      
+                          <input class="form-check-input" type="radio" value="free" name="flexRadioDefault" id="free" checked data-action="add-product#toggel">                      
+                          <label class="form-check-label" for="flexRadioDefault1">
+                            Free Shipping 
+                          </label>
+                        </div>
+                        <div class="form-check" data-controller="add-product">                      
+                          <input class="form-check-input" type="radio" value="fast" name="flexRadioDefault" id="fast" data-action="add-product#toggel">                      
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            Fast Shipping $5
+                          </label>
+                        </div>
+                      </td>               
+                    </tr>
+                    
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <h5>Total</h5>
+                      </td>
+                      <td>
+                        <h5>$<span id="total_with_shipping"><%= @sub_total%></span></h5>
+                      </td>
+                    </tr>
+                  
+                    <tr class="out_button_area">
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                      </td>
+                    </tr>
 
-
+                    <tr class="out_button_area">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <div class="checkout_btn_inner">
+                        <a class="gray_btn" href="/products">Continue Shopping</a>
+                        <a class="main_btn" href="#">Proceed to checkout</a>
+                      </div>
+                    </td>
+                  </tr>
                 
-              
-                <tr class="bottom_button">
-                  <td>                  
-                    <%= form.submit "Update Cart"%>
-                  </td>
-                  <td></td>
-                  <td></td>                
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <h5>Subtotal</h5>
-                  </td>
-                  <td>
-                    <h5 id="total">$<%= @sub_total %></h5>
-                  </td>
-                </tr>
-
-              </div>
-              
-                <tr class="shipping_area">
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <h5>Shipping</h5>
-                  </td>
-                  <td>
-                    <div class="form-check" data-controller="add-product">                      
-                      <input class="form-check-input" type="radio" value="free" name="flexRadioDefault" id="free" checked data-action="add-product#toggel">                      
-                      <label class="form-check-label" for="flexRadioDefault1">
-                        Free Shipping 
-                      </label>
-                    </div>
-                    <div class="form-check" data-controller="add-product">                      
-                      <input class="form-check-input" type="radio" value="fast" name="flexRadioDefault" id="fast" data-action="add-product#toggel">                      
-                      <label class="form-check-label" for="flexRadioDefault2">
-                        Fast Shipping $5
-                      </label>
-                    </div>
-                  </td>               
-                </tr>
-                
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <h5>Total</h5>
-                  </td>
-                  <td>
-                    <h5>$<span id="total_with_shipping"><%= @sub_total%></span></h5>
-                  </td>
-                </tr>
-              
-                <tr class="out_button_area">
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                  </td>
-                </tr>
-
-            
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-<% end %>
+    <% end %>
+  <% end %>
+</section>
+
 
