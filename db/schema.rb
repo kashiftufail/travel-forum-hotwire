@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_05_175721) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_23_121057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_175721) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "addressable_id", null: false
+    t.string "addressable_type", null: false
+    t.string "addressable_scope", null: false
+    t.string "address_name"
+    t.string "street_first_line", null: false
+    t.string "street_second_line"
+    t.string "postal_code", null: false
+    t.string "city", null: false
+    t.string "province", null: false
+    t.string "country", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_id", "addressable_type", "addressable_scope"], name: "addressable_index"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -107,14 +123,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_175721) do
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.bigint "product_id", null: false
     t.bigint "cart_id", null: false
-    t.bigint "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
-    t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
@@ -228,7 +242,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_175721) do
   add_foreign_key "destinations_packages", "destinations"
   add_foreign_key "destinations_packages", "packages"
   add_foreign_key "line_items", "carts"
-  add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "profiles", "users"

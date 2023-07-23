@@ -31,15 +31,15 @@ Rails.application.routes.draw do
   get '/blog', to: 'home#blog'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
-  post 'line_items' => "line_items#create"
-  post 'update_cart' => "carts#update_cart"
-  get 'line_items/:id' => "line_items#show", as: "line_item"
-  delete 'line_items/:id' => "line_items#destroy"
-
+  post 'line_items', to:  "line_items#create"
+  post 'update_cart', to:  "carts#update_cart"
+  get 'line_items/:id', to:  "line_items#show", as: "line_item"
+  delete 'line_items/:id', to:  "line_items#destroy"
+  get 'checkout', to: 'checkout#index', as: 'checkout'
   
-  get 'cart' => "carts#show", as: "cart"
-  get 'empty_cart' => "carts#empty_cart", as: "empty_cart"
-  # delete 'carts/:id' => "carts#destroy"
+  get 'cart', to:  "carts#show", as: "cart"
+  get 'empty_cart', to:  "carts#empty_cart", as: "empty_cart"
+  delete 'carts/:id', to:  "carts#destroy"
   
   root 'home#index'
 end

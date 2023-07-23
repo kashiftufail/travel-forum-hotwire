@@ -11,6 +11,19 @@ class User < ApplicationRecord
   has_many :booking
   has_many :tours
   has_many :destinations , through: :tours
+  
+  has_one :shipping_address, 
+    -> { where(addressable_scope: :shipping_address) }, 
+    as: :addressable, 
+    class_name: 'Address', 
+    dependent: :destroy   
+
+  has_one :billing_address, 
+    -> { where(addressable_scope: :billing_address) }, 
+    as: :addressable, 
+    class_name: 'Address', 
+    dependent: :destroy   
+  
   accepts_nested_attributes_for :profile
   validates :profile, presence: true
 
